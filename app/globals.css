@@ -75,8 +75,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, SFMono-Regular, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -116,10 +116,54 @@
 }
 
 @layer base {
+  html {
+    background: #030406;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    min-width: 320px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.16), transparent 34rem),
+      #030406;
+    color: #ffffff;
+    text-rendering: geometricPrecision;
+  }
+
+  ::selection {
+    background: rgba(125, 211, 252, 0.28);
+    color: #ffffff;
+  }
+
+  button,
+  a,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.noise-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  mix-blend-mode: soft-light;
+  background-image:
+    repeating-radial-gradient(circle at 17% 32%, rgba(255, 255, 255, 0.95) 0 0.6px, transparent 0.8px 3px),
+    repeating-radial-gradient(circle at 79% 12%, rgba(255, 255, 255, 0.45) 0 0.5px, transparent 0.7px 4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

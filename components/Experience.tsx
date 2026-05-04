@@ -1,105 +1,70 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
+import { MapPinned, Milestone, RadioTower } from 'lucide-react';
 import { portfolioData } from '@/lib/portfolio-data';
 
 export function Experience() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  };
-
   return (
-    <section id="experience" className="py-20 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
+    <section id="experience" className="relative bg-[#030406] py-28 md:py-36">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/30 to-transparent" />
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end"
         >
-          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Work Experience
-          </motion.h2>
-          <motion.div variants={itemVariants} className="w-16 h-1 bg-indigo-600 mb-12" />
-
-          {/* Experience Timeline */}
-          <div className="space-y-8">
-            {portfolioData.experience.map((job, index) => (
-              <motion.div
-                key={job.id}
-                variants={itemVariants}
-                className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-indigo-600"
-              >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                  <div>
-                    <h3 className="text-2xl font-semibold text-gray-900">{job.title}</h3>
-                    <p className="text-indigo-600 font-semibold text-lg">{job.company}</p>
-                    <p className="text-gray-600">{job.location}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-gray-600 font-medium">
-                      {job.startDate} – {job.endDate}
-                    </p>
-                  </div>
-                </div>
-
-                <ul className="space-y-3">
-                  {job.achievements.map((achievement, idx) => (
-                    <li key={idx} className="flex gap-3 text-gray-700">
-                      <span className="text-indigo-600 font-bold flex-shrink-0">•</span>
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+          <div>
+            <p className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-violet-100/45">Journey through systems</p>
+            <h2 className="text-4xl font-semibold leading-tight text-white md:text-6xl">
+              Learning, building, and refining in public-impact contexts.
+            </h2>
           </div>
-
-          {/* Education Section */}
-          <motion.h3 variants={itemVariants} className="text-3xl md:text-4xl font-bold mt-16 mb-8 text-gray-900">
-            Education
-          </motion.h3>
-
-          <div className="space-y-6">
-            {portfolioData.education.map((edu) => (
-              <motion.div
-                key={edu.id}
-                variants={itemVariants}
-                className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900">{edu.degree}</h4>
-                    <p className="text-indigo-600 font-semibold">{edu.school}</p>
-                    <p className="text-gray-600">{edu.location}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-gray-600 font-medium">
-                      {edu.startDate} – {edu.endDate}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <p className="text-lg leading-8 text-white/52">
+            Aseem's path moves across education, product design training, AI curiosity, and hands-on platform work. The throughline is a designer learning how human behavior meets operational systems.
+          </p>
         </motion.div>
+
+        <div className="relative overflow-hidden border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02))] p-5 md:p-8">
+          <div className="absolute left-0 top-0 h-full w-px bg-cyan-200/30" />
+          <div className="absolute right-0 top-0 h-full w-px bg-violet-200/20" />
+          <div className="grid gap-5">
+            {portfolioData.experience.map((job, index) => (
+              <motion.article
+                key={job.id}
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ delay: index * 0.08, duration: 0.78, ease: [0.22, 1, 0.36, 1] }}
+                className="group grid gap-6 border border-white/10 bg-black/20 p-5 transition hover:border-cyan-200/25 hover:bg-white/[0.04] md:grid-cols-[0.7fr_1.3fr]"
+              >
+                <div className="border-b border-white/10 pb-5 md:border-b-0 md:border-r md:pb-0 md:pr-6">
+                  <div className="mb-8 flex items-center justify-between">
+                    <span className="grid h-12 w-12 place-items-center border border-white/10 bg-white/[0.04] text-cyan-100">
+                      {index === 0 ? <RadioTower className="h-5 w-5" /> : index === 1 ? <Milestone className="h-5 w-5" /> : <MapPinned className="h-5 w-5" />}
+                    </span>
+                    <span className="font-mono text-xs uppercase tracking-[0.22em] text-white/32">{job.period}</span>
+                  </div>
+                  <p className="font-mono text-xs uppercase tracking-[0.24em] text-cyan-100/40">{job.signal}</p>
+                  <h3 className="mt-3 text-2xl font-semibold text-white">{job.title}</h3>
+                  <p className="mt-2 text-white/52">{job.company}</p>
+                  <p className="mt-1 text-sm text-white/34">{job.location}</p>
+                </div>
+
+                <div className="grid content-center gap-3">
+                  {job.achievements.map((achievement) => (
+                    <div key={achievement} className="flex gap-4 text-sm leading-7 text-white/56">
+                      <span className="mt-3 h-px w-6 shrink-0 bg-cyan-100/45 transition group-hover:w-10" />
+                      <p>{achievement}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

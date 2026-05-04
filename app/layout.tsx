@@ -1,14 +1,10 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: 'Aseem Pudasaini - UI/UX Designer & Front-end Engineer',
-  description: 'Portfolio of Aseem Pudasaini, a UI/UX Designer and Front-end Engineer based in Kathmandu, Nepal.',
+  title: 'Aseem Pudasaini - UI/UX Designer',
+  description: 'A cinematic dark-theme portfolio for Aseem Pudasaini, a Kathmandu-based UI/UX Designer and AI Student.',
   generator: 'Next.js',
   icons: {
     icon: [
@@ -21,8 +17,8 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/mandala.png',
+        type: 'image/png',
       },
     ],
     apple: '/apple-icon.png',
@@ -35,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="font-sans antialiased bg-white">
+    <html lang="en" className="scroll-smooth dark">
+      <body className="font-sans antialiased bg-[#030406] text-white">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
